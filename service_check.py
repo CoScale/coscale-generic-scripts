@@ -2,6 +2,8 @@
 import sys
 import json
 import subprocess
+from threading import Thread
+
 
 # Group
 group = "Server availability"
@@ -21,6 +23,11 @@ hosts = {
 #
 # DONT CHANGE ANYTHING BELOW THIS LINE
 #
+
+def execute(metricId, host, port):
+    pingtime = subprocess.check_output("nc -w 1 %s %s && echo $? || echo $?" % (host, port), shell=True)
+    sys.stdout.write("M%s %s\n" % (metricId, pingtime.rstrip()))
+
 def config():
     metrics = []
     counter = 0;
@@ -38,7 +45,7 @@ def config():
         counter += 1
 
     print json.dumps({
-        "maxruntime": 50000,
+        "maxruntime": 5000,
         "metrics": metrics
     })
 
@@ -46,12 +53,9 @@ def data():
     datapoints = {}
     counter = 0;
     for host in hosts:
-        pingtime = subprocess.check_output("nc -w 1 %s %s && echo $? || echo $?" % (hosts[host]["host"], hosts[host]["port"]), shell=True)
-        datapoints[counter] = pingtime.rstrip()
-        counter += 1
+        Thread(target = execute, args = (counter, hosts[host]["host"], hosts[host]["port"], )).start()
 
-    for line in datapoints:
-        print "M%s %s" % (line, datapoints[line])
+        counter += 1
 
 if __name__ == "__main__":
     if sys.argv[1] == '-c':

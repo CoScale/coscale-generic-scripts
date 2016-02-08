@@ -4,6 +4,7 @@ import json
 import subprocess
 from dateutil.parser import parse
 from datetime import date
+from threading import Thread
 
 # Group
 group = "SSL check"
@@ -23,6 +24,18 @@ hosts = {
 #
 # DONT CHANGE ANYTHING BELOW THIS LINE
 #
+def execute(metricId, host):
+    output = subprocess.check_output("echo | openssl s_client -connect %s:443 2>/dev/null | openssl x509 -noout -dates | grep notAfter" % host, shell=True)
+
+    # Extract exp date from output
+    expdate = parse(output.rstrip().split("=")[1]).date()
+
+    # Calculate amount of days left
+    today = date.today()
+    difference = expdate - today
+
+    sys.stdout.write("M%s %s\n" % (metricId, difference.days))
+
 def config():
     metrics = []
     counter = 0;
@@ -40,7 +53,7 @@ def config():
         counter += 1
 
     print json.dumps({
-        "maxruntime": 50000,
+        "maxruntime": 5000,
         "metrics": metrics
     })
 
@@ -48,21 +61,9 @@ def data():
     datapoints = {}
     counter = 0;
     for host in hosts:
-        # Use openssl to check cert
-        output = subprocess.check_output("echo | openssl s_client -connect %s:443 2>/dev/null | openssl x509 -noout -dates | grep notAfter" % (hosts[host]), shell=True)
-
-        # Extract exp date from output
-        expdate = parse(output.rstrip().split("=")[1]).date()
-
-        # Calculate amount of days left
-        today = date.today()
-        difference = expdate - today
-        datapoints[counter] = difference.days
+        Thread(target = execute, args = (counter, hosts[host], )).start()
 
         counter += 1
-
-    for line in datapoints:
-        print "M%s %s" % (line, datapoints[line])
 
 if __name__ == "__main__":
     if sys.argv[1] == '-c':
