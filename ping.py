@@ -54,10 +54,16 @@ def config():
 def data():
     datapoints = {}
     counter = 0;
+    threads = [None] * len(hosts)
     for host in hosts:
-        Thread(target = execute, args = (counter, hosts[host], count, )).start()
+        threads[counter] = Thread(target = execute, args = (counter, hosts[host], count, ))
+        threads[counter].start()
 
         counter += 1
+
+    # Wait for all threads to finish
+    for thread in threads:
+        thread.join()
 
 if __name__ == "__main__":
     if sys.argv[1] == '-c':
