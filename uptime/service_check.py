@@ -6,18 +6,18 @@ from threading import Thread
 
 
 # Group
-group = "Server availability"
+group = "Service availability"
 
 # Description of metrics
 description = "Check remote service availability"
 
 # Hosts to check
 hosts = {
-    # "{{name of the host}}": { "host": "{{hostname/ip address}}", "port": {{port}} },
-    # ex "google dns": { "host": "8.8.8.8", "port": 53 },
-    "google dns": { "host": "8.8.8.8", "port": 53 },
-    "coscale api": { "host": "37.187.86.75", "port": 80 },
-    "coscale dns": { "host": "37.187.86.75", "port": 53 }, # No service is running here
+    # "{{Service availability name of the host}}": { "host": "{{hostname/ip address}}", "port": {{port}} },
+    # ex "Service availability google dns": { "host": "8.8.8.8", "port": 53 },
+    "Service availability google dns": { "host": "8.8.8.8", "port": 53 },
+    "Service availability coscale api": { "host": "37.187.86.75", "port": 80 },
+    "Service availability coscale dns": { "host": "37.187.86.75", "port": 53 }, # No service is running here
 }
 
 #
