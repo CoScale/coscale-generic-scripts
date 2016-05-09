@@ -7,3 +7,6 @@ Examples of our generic scripts in multiple programming languages.
 
 ### `./uptime`
 Example scripts to monitor services and websites.
+
+### `./web`
+Examples scripts for monitoring web services
