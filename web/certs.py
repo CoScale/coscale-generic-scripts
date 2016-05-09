@@ -28,12 +28,11 @@ hosts = {
 def execute(metricId, host):
     try:
         output = subprocess.check_output("echo | openssl s_client -showcerts -servername %s -connect %s:443 2>/dev/null | openssl x509 -noout -dates 2>/dev/null" % (host, host), shell=True)
+        notAfter = output.split("\n")[1].split("=")[1]
+        days = (datetime.datetime.strptime(notAfter, "%b %d %H:%M:%S %Y %Z") - datetime.datetime.today()).days
     except subprocess.CalledProcessError as e:
-        print e
-        return
+        days = -1
 
-    notAfter = output.split("\n")[1].split("=")[1]
-    days = (datetime.datetime.strptime(notAfter, "%b %d %H:%M:%S %Y %Z") - datetime.datetime.today()).days
     sys.stdout.write("M%s %s\n" % (metricId, days))
 
 def config():
