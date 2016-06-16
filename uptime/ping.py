@@ -18,7 +18,7 @@ count = 3
 hosts = {
     # "{{name of the host}}": "{{hostname/ip}}",
     # ex "coscale": "coscale.com",
-    "google": "google.com",
+    "google": "goasdfsadfasdfasdfsdfsafsogle.com",
     "pingdom": "pingdom.com",
     "coscale": "app.coscale.com"
 }
@@ -27,8 +27,12 @@ hosts = {
 # DONT CHANGE ANYTHING BELOW THIS LINE
 #
 def execute(metricId, host, count):
-    pingtime = subprocess.check_output("ping -c %s %s | tail -1 | awk '{print $4}' | cut -d '/' -f 2" % (count, host), shell=True)
-    sys.stdout.write("M%s %s\n" % (metricId, pingtime.rstrip()))
+    pingtime = subprocess.check_output("ping -c %s %s | tail -1 | awk '{print $4}' | cut -d '/' -f 2" % (count, host), shell=True).rstrip()
+
+    if pingtime == '':
+        pingtime = 0
+
+    sys.stdout.write("M%s %s\n" % (metricId, pingtime))
 
 def config():
     metrics = []
