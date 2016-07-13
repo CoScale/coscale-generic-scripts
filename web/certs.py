@@ -45,7 +45,7 @@ def config():
             "name": host,
             "description": description,
             "groups": group,
-            "unit": "days",
+            "unit": "",
             "tags": "",
             "calctype": "Instant"
         })
