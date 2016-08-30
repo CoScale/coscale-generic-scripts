@@ -53,6 +53,7 @@ def config():
 
     print json.dumps({
         "maxruntime": 5000,
+        "period": 3600, # Check every hour
         "metrics": metrics
     })
 

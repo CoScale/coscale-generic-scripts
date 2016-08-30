@@ -8,8 +8,11 @@ do
         # Configuration mode: return the custom metrics data should be defined
 
         echo -n '{';
-        # First we define how long the script is allowed to run, because the CoScale agent checks it every minute it is advised to not set this higher then 1000
+        # First we define how long the script is allowed to run
         echo -n '"maxruntime":1000,'
+
+        # Second we set the period the script will run, in this case it will run every 60 seconds
+        echo -n '"period": 60,'
 
         # Next we define the metrics we want the CoScale agent to fetch every minute
         echo -n '"metrics":['

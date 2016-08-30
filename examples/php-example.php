@@ -4,7 +4,8 @@
 function config()
 {
     $settings = [
-        "maxruntime" => 5000,
+        "maxruntime" => 5000, #  How long the script is allowed to run
+        "period" => 60, # The period the script will run, in this case it will run every 60 seconds
         "metrics" => [
             [
                 "id" => 0,
