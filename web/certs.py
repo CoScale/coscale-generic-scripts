@@ -10,7 +10,7 @@ import datetime
 group = "HTTPS check"
 
 # Description of metrics
-description = "Check remote service availability"
+description = "Check validity of HTTPS certificates"
 
 # Hosts to check
 hosts = {
