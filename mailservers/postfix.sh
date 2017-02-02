@@ -1,5 +1,8 @@
 #!/bin/bash
+
+#
 # Generic Script for parsing your postfix logs.
+#
 
 for i in "$@"
 do

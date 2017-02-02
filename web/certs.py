@@ -1,4 +1,9 @@
 #!/usr/bin/python
+
+# 
+# Generic script to get the days left to expire for https certs
+#
+
 import sys
 import json
 import subprocess

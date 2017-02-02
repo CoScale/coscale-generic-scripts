@@ -1,4 +1,9 @@
 #!/usr/bin/python
+
+# 
+# Generic script to check external services response
+#
+
 import sys
 import json
 import subprocess

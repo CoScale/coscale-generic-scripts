@@ -1,4 +1,9 @@
 #!/usr/bin/python
+
+# 
+# Generic script to get the latency to remote hosts
+#
+
 import sys
 import json
 import subprocess
@@ -18,7 +23,7 @@ count = 3
 hosts = {
     # "{{name of the host}}": "{{hostname/ip}}",
     # ex "coscale": "coscale.com",
-    "google": "goasdfsadfasdfasdfsdfsafsogle.com",
+    "google": "google.com",
     "pingdom": "pingdom.com",
     "coscale": "app.coscale.com"
 }

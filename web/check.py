@@ -1,4 +1,9 @@
 #!/usr/bin/python
+
+# 
+# Generic script to check the response of a web request
+#
+
 import sys
 import json
 import subprocess
