@@ -51,18 +51,18 @@ def data():
         counter += 1
 
 def run(command):
-    success = 0
+    success = 100
     result = ''
     start = time.time()
     try:
         result = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as grepexc:
-        success = grepexc.returncode
+        success = 0
     end = (time.time() - start) * 1000
 
     # Check output
     if result == '':
-        success = 1
+        success = 0
 
     return [success, end]
 

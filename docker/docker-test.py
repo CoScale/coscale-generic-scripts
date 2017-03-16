@@ -124,40 +124,50 @@ def config():
 
 # Data retrieval mode: return the data for the custom metrics
 def data():
+    # Success value
     result = 0
+
+    # Total time spent
     total = 0
 
     (success, time) = run(["docker pull busybox"])
-    result += success
+    result += success - 100
     total += time
     print "M2 %s" % success
     print "M3 %s" % time
     (success, time) = run(["docker run --name coscale-test -d busybox"])
-    result += success
+    result += success - 100
     total += time
     print "M4 %s" % success
     print "M5 %s" % time
     (success, time) = run(["docker stop coscale-test"])
-    result += success
+    result += success - 100
     total += time
     print "M6 %s" % success
     print "M7 %s" % time
     (success, time) = run(["docker rm coscale-test"])
-    result += success
+    result += success - 100
     total += time
     print "M8 %s" % success
     print "M9 %s" % time
+
+    # Convert result to meaningfull value
+    if result < 0:
+        result = 0
+    else:
+        result = 100
+
 
     print "M0 %s" % result
     print "M1 %s" % total
 
 def run(command):
-    success = 0
+    success = 100
     start = time.time()
     try:
         subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as grepexc:
-        success = grepexc.returncode
+        success = 0
     end = (time.time() - start) * 1000
 
     return [success, end]
