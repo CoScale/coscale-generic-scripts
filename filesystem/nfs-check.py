@@ -29,7 +29,7 @@ def config():
             "id": counter,
             "datatype": "DOUBLE",
             "name": "NFS Available - %s" % directory,
-            "description": "Value of 1 if NFS is unavailable, 0 if available",
+            "description": "100% if the directory exists and has files",
             "groups": "NFS Availability",
             "unit": "",
             "tags": "",
