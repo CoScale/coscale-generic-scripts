@@ -1,36 +1,38 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 # 
 # Generic script to check the response of a web request
 #
 
-import sys
-import json
-import subprocess
-from threading import Thread
+import argparse
 import datetime
 import httplib
-from urlparse import urlparse
+import json
+import subprocess
+import sys
 
+from threading import Thread
+from urlparse import urlparse
+#------------------------------------------------------------------------------
 # Group
-group = "HTTP check"
+group = 'HTTP check'
 
 # Description of metrics
-description = "Check remote webservice availability"
+description = 'Check remote webservice availability'
 
 # Hosts to check
 hosts = {
-    # "{{Name of host}}": {{host}},
-    # ex "HTTPS days left - google.be": "google.be",
-    "HTTP status - google.be": "http://www.google.be",
-    "HTTP status - coscale": "http://www.coscale.com/contact",
-    "HTTP status - microsoft": "https://www.microsoft.com/en-us/about",
+    # '{{Name of host}}': {{host}},
+    # ex 'HTTPS days left - google.be': 'google.be',
+    'HTTP status - google.be': 'http://www.google.be',
+    'HTTP status - coscale': 'http://www.coscale.com/contact',
+    'HTTP status - microsoft': 'https://www.microsoft.com/en-us/about',
 }
-
+#------------------------------------------------------------------------------
 #
 # DONT CHANGE ANYTHING BELOW THIS LINE
 #
-
+#------------------------------------------------------------------------------
 def execute(metricId, url):
     parse = urlparse(url)
     host = parse.hostname
@@ -38,34 +40,34 @@ def execute(metricId, url):
 
     try:
         conn = httplib.HTTPConnection(host)
-        conn.request("HEAD", path)
+        conn.request('HEAD', path)
         status = conn.getresponse().status
     except StandardError:
         status = -1
 
-    sys.stdout.write("M%s %s\n" % (metricId, status))
+    sys.stdout.write('M{0} {1}\n'.format(metricId, status))
 
 def config():
     metrics = []
     counter = 0;
     for host in hosts:
         metrics.append({
-            "id": counter,
-            "datatype": "DOUBLE",
-            "name": host,
-            "description": description,
-            "groups": group,
-            "unit": "",
-            "tags": "",
-            "calctype": "Instant"
+            'id': counter,
+            'datatype': 'DOUBLE',
+            'name': host,
+            'description': description,
+            'groups': group,
+            'unit': '',
+            'tags': '',
+            'calctype': 'Instant'
         })
         counter += 1
 
     print json.dumps({
-        "maxruntime": 5000,
-        "period": 3600, # Check every hour
-        "metrics": metrics
-    })
+        'maxruntime': 5000,
+        'period': 3600, # Check every hour
+        'metrics': metrics
+    }, indent=4)
 
 def data():
     datapoints = {}
@@ -80,10 +82,15 @@ def data():
     # Wait for all threads to finish
     for thread in threads:
         thread.join()
+#------------------------------------------------------------------------------
+# Switch to check in which mode the script is running
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-c', action='store_true', help='output a JSON object detailing the metrics this script collects')
+    parser.add_argument('-d', action='store_true', help='output the metrics this script collects')
+    args = parser.parse_args()
 
-if __name__ == "__main__":
-    if sys.argv[1] == '-c':
+    if args.c:
         config()
-
-    if sys.argv[1] == '-d':
+    elif args.d:
         data()
