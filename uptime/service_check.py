@@ -49,9 +49,10 @@ def config():
         counter += 1
 
     print json.dumps({
-        'maxruntime': 5000,
-        'metrics': metrics
-    }, indent=4)
+        "maxruntime": 5000,
+        "period": 60,
+        "metrics": metrics
+    })
 
 def data():
     datapoints = {}

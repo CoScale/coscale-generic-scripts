@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 
 # Configuration mode: return the custom metrics data should be defined

@@ -1,8 +1,10 @@
+#!/usr/bin/env powershell
+
 # To be able to run this script you need to add `powershell.exe c:\path\to\the\script.ps1` in the plugin configuration
 $configuration = @"
 {
-    "maxruntime": 10000, # How long the script is allowed to run
-    "period": 60, # The period the script will run, in this case it will run every 60 seconds
+    "maxruntime": 10000, 
+    "period": 60, 
     "metrics": [{
         "id": 1,
         "datatype": "DOUBLE",
@@ -10,6 +12,7 @@ $configuration = @"
         "description": "Amount of errors in the 'Application' event log",
         "groups": "Custom Metrics",
         "unit": "errors",
+        "tags": "",
         "calctype": "Difference"
     }]
 }

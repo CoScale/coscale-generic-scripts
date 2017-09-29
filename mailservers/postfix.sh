@@ -11,15 +11,15 @@ do
         # Configuration mode: return the custom metrics data should be defined.
 
         echo -n '{';
-        # First we define how long the script is allowed to run, because the CoScale agent checks it every minute it is advised to not set this higher then 1000
         echo -n '"maxruntime":1000,'
+        echo -n '"period":60,'
 
         # Next we define the metrics we want the CoScale agent to fetch every minute
         echo -n '"metrics":['
         echo -n '{"id":1,"datatype":"DOUBLE","name":"Received mail","description":"The amount of emails currently received by postfix.","groups":"Postfix","unit":"emails","tags":"","calctype":"Instant"},';
-        echo -n '{"id":2,"datatype":"DOUBLE","name":"Sent mail","description":"The amount of emails with status=sent.","groups":"Postfix","unit":"emails","tags":"","calctype":"Instant"}',;
-        echo -n '{"id":3,"datatype":"DOUBLE","name":"Deferred mail","description":"The amount of emails with status=deferred.","groups":"Postfix","unit":"emails","tags":"","calctype":"Instant"}',;
-        echo -n '{"id":4,"datatype":"DOUBLE","name":"Bounced mail","description":"The amount of emails with status=bounced.","groups":"Postfix","unit":"emails","tags":"","calctype":"Instant"}',;
+        echo -n '{"id":2,"datatype":"DOUBLE","name":"Sent mail","description":"The amount of emails with status=sent.","groups":"Postfix","unit":"emails","tags":"","calctype":"Instant"},';
+        echo -n '{"id":3,"datatype":"DOUBLE","name":"Deferred mail","description":"The amount of emails with status=deferred.","groups":"Postfix","unit":"emails","tags":"","calctype":"Instant"},';
+        echo -n '{"id":4,"datatype":"DOUBLE","name":"Bounced mail","description":"The amount of emails with status=bounced.","groups":"Postfix","unit":"emails","tags":"","calctype":"Instant"}';
         echo ']}';
         ;;
 
