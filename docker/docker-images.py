@@ -12,16 +12,18 @@ def config():
     settings = {
         "maxruntime": 30000,  # How long the script is allowed to run
         "period": 60,  # The period the script will run, in this case it will run every 60 seconds
-        "metrics": {
-            "id": 0,
-            "datatype": "DOUBLE",
-            "name": "Number of Docker images",
-            "description": "Number of Docker images available on host",
-            "groups": "Docker images",
-            "unit": "",
-            "tags": "",
-            "calctype": "Instant"
-        }
+        "metrics": [
+            {
+                "id": 0,
+                "datatype": "DOUBLE",
+                "name": "Number of Docker images",
+                "description": "Number of Docker images available on host",
+                "groups": "Docker images",
+                "unit": "",
+                "tags": "",
+                "calctype": "Instant"
+            }
+        ]
     }
 
     print json.dumps(settings)
