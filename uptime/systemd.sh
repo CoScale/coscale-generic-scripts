@@ -14,19 +14,19 @@ do
 
         echo -n '"metrics":['
 
-        echo -n '{ "id": 0, "name": "Disabled state", "description": "Service is in disabled state", "groups": "SystemD/State", "unit": "", "tags": "", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
-        echo -n '{ "id": 1, "name": "Enabled state", "description": "Service is in enabled state", "groups": "SystemD/State", "unit": "", "tags": "", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
-        echo -n '{ "id": 2, "name": "Indirect state", "description": "Service is in indirect state", "groups": "SystemD/State", "unit": "", "tags": "", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
-        echo -n '{ "id": 3, "name": "Masked state", "description": "Service is in masked state", "groups": "SystemD/State", "unit": "", "tags": "", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
-        echo -n '{ "id": 4, "name": "Static state", "description": "Services in in static state", "groups": "SystemD/State", "unit": "", "tags": "", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
+        echo -n '{ "id": 0, "name": "Disabled state", "description": "Service is in disabled state", "groups": "SystemD/State", "unit": "", "tags": "", "datatype":"DOUBLE", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
+        echo -n '{ "id": 1, "name": "Enabled state", "description": "Service is in enabled state", "groups": "SystemD/State", "unit": "", "tags": "", "datatype":"DOUBLE", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
+        echo -n '{ "id": 2, "name": "Indirect state", "description": "Service is in indirect state", "groups": "SystemD/State", "unit": "", "tags": "", "datatype":"DOUBLE", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
+        echo -n '{ "id": 3, "name": "Masked state", "description": "Service is in masked state", "groups": "SystemD/State", "unit": "", "tags": "", "datatype":"DOUBLE", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
+        echo -n '{ "id": 4, "name": "Static state", "description": "Services in in static state", "groups": "SystemD/State", "unit": "", "tags": "", "datatype":"DOUBLE", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
 
-        echo -n '{ "id": 5, "name": "Active substate", "description": "Service is in active substate", "groups": "SystemD/Substate", "unit": "", "tags": "", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
-        echo -n '{ "id": 6, "name": "Elapsed substate", "description": "Service is in elapsed substate", "groups": "SystemD/Substate", "unit": "", "tags": "", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
-        echo -n '{ "id": 7, "name": "Exited substate", "description": "Service is in exited substate", "groups": "SystemD/Substate", "unit": "", "tags": "", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
-        echo -n '{ "id": 8, "name": "Listening substate", "description": "Service is in listening substate", "groups": "SystemD/Substate", "unit": "", "tags": "", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
-        echo -n '{ "id": 9, "name": "Mounted substate", "description": "Services in in mounted substate", "groups": "SystemD/Substate", "unit": "", "tags": "", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
-        echo -n '{ "id": 10, "name": "Running substate", "description": "Services in in running substate", "groups": "SystemD/Substate", "unit": "", "tags": "", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
-        echo -n '{ "id": 11, "name": "Waiting substate", "description": "Services in in waiting substate", "groups": "SystemD/Substate", "unit": "", "tags": "", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] }'
+        echo -n '{ "id": 5, "name": "Active substate", "description": "Service is in active substate", "groups": "SystemD/Substate", "unit": "", "tags": "", "datatype":"DOUBLE", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
+        echo -n '{ "id": 6, "name": "Elapsed substate", "description": "Service is in elapsed substate", "groups": "SystemD/Substate", "unit": "", "tags": "", "datatype":"DOUBLE", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
+        echo -n '{ "id": 7, "name": "Exited substate", "description": "Service is in exited substate", "groups": "SystemD/Substate", "unit": "", "tags": "", "datatype":"DOUBLE", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
+        echo -n '{ "id": 8, "name": "Listening substate", "description": "Service is in listening substate", "groups": "SystemD/Substate", "unit": "", "tags": "", "datatype":"DOUBLE", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
+        echo -n '{ "id": 9, "name": "Mounted substate", "description": "Services in in mounted substate", "groups": "SystemD/Substate", "unit": "", "tags": "", "datatype":"DOUBLE", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
+        echo -n '{ "id": 10, "name": "Running substate", "description": "Services in in running substate", "groups": "SystemD/Substate", "unit": "", "tags": "", "datatype":"DOUBLE", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] },'
+        echo -n '{ "id": 11, "name": "Waiting substate", "description": "Services in in waiting substate", "groups": "SystemD/Substate", "unit": "", "tags": "", "datatype":"DOUBLE", "calctype": "Instant", "dimensions": [ {"id": 1, "name":"Service"} ] }'
 
 
         echo ']}';
